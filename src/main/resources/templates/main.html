@@ -69,37 +69,37 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="generate-code-close">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-target="#otp-registration-generate-secret-approve" data-bs-toggle="modal" data-bs-dismiss="modal">Secret Key Approve</button>
+          <button type="button" class="btn btn-primary" data-bs-target="#otp-registration-generate-secret-prove" data-bs-toggle="modal" data-bs-dismiss="modal">Secret Key Prove</button>
         </div>
       </div>
     </div>
   </div>
   <!--// Generate Code -->
-  <!-- Approve Secret code -->
-  <div class="modal fade" id="otp-registration-generate-secret-approve" tabindex="-1" aria-labelledby="otpRegistrationSecretApproveLabel" aria-hidden="true">
+  <!-- prove Secret code -->
+  <div class="modal fade" id="otp-registration-generate-secret-prove" tabindex="-1" aria-labelledby="otpRegistrationSecretProveLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="otpRegistrationGenerateSecretApproveHeadLabel">Register to OTP</h5>
+          <h5 class="modal-title" id="otpRegistrationGenerateSecretProveHeadLabel">Register to OTP</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="secret-approve">
+          <form id="secret-prove">
             <div class="mb-3">
               <label for="otp-number">OTP 번호(6자리)</label> <input type="text" name="otpNumber" id="otp-number"/>
-              <input type="hidden" name="secretKey" id="otpSecretApprove"/>
-              <input type="hidden" name="type" id="otpSecretApproveType"/>
+              <input type="hidden" name="secretKey" id="otpSecretProve"/>
+              <input type="hidden" name="type" id="otpSecretProveType"/>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="generate-code-approve-close">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="generate-code-approve-done">Done</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="generate-code-prove-close">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="generate-code-prove-done">Done</button>
         </div>
       </div>
     </div>
   </div>
-  <!--// Approve Secret code -->
+  <!--// Prove Secret code -->
 
 </div>
 <div class="col-lg-8 mx-auto p-3 py-md-5">
@@ -113,8 +113,8 @@
     $("#select-device-radio").each(function(){
       this.reset();
     });
-    $("#otpSecretApprove").text("");
-    $("#otpSecretApproveType").val("");
+    $("#otpSecretProve").text("");
+    $("#otpSecretProveType").val("");
   });
 
   $("#select-device-done").click(function(){
@@ -131,8 +131,8 @@
         console.log("success", data);
         $("#otpQrCodeImage").attr("src", data.codeUrl);
         $("#otpSecretKey").val(data.code);
-        $("#otpSecretApprove").val(data.code);
-        $("#otpSecretApproveType").val(selectDevice);
+        $("#otpSecretProve").val(data.code);
+        $("#otpSecretProveType").val(selectDevice);
         var otpRegistrationSecretKey = new bootstrap.Modal(document.getElementById("otp-registration-generate-secret-key"), {keyboard: false});
         otpRegistrationSecretKey.show();
       },
@@ -146,14 +146,14 @@
     });
   });
 
-  $("#generate-code-close, #generate-code-approve-close").click(function(){
-    $("#otpSecretApprove").val("");
-    $("#otpSecretApproveType").val("");
+  $("#generate-code-close, #generate-code-prove-close").click(function(){
+    $("#otpSecretProve").val("");
+    $("#otpSecretProveType").val("");
   });
 
-  $("#generate-code-approve-done").click(function(){
-    var secretKey = $("#otpSecretApprove").val();
-    var type = $("#otpSecretApproveType").val();
+  $("#generate-code-prove-done").click(function(){
+    var secretKey = $("#otpSecretProve").val();
+    var type = $("#otpSecretProveType").val();
     var otpNumber = $("#otp-number").val();
 
     $.ajax({
@@ -176,7 +176,7 @@
       }
     });
 
-    $("#secret-approve").each(function(){
+    $("#secret-prove").each(function(){
       this.reset();
     });
 

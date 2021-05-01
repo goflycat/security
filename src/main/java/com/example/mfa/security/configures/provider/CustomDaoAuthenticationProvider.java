@@ -1,6 +1,6 @@
 package com.example.mfa.security.configures.provider;
 
-import com.example.mfa.security.exception.OtpNotApproveException;
+import com.example.mfa.security.exception.OtpNotProveException;
 import com.example.mfa.security.services.CustomUserDetailsService;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -89,7 +89,7 @@ public class CustomDaoAuthenticationProvider extends AbstractUserDetailsAuthenti
                         "UserDetailsService returned null, which is an interface contract violation");
             }
             return loadedUser;
-        } catch (OtpNotApproveException | UsernameNotFoundException ex) {
+        } catch (OtpNotProveException | UsernameNotFoundException ex) {
             mitigateAgainstTimingAttack(authentication);
             throw ex;
         } catch (InternalAuthenticationServiceException ex) {

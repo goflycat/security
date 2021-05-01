@@ -2,7 +2,7 @@ package com.example.mfa.security.services;
 
 import com.example.mfa.security.datas.dtos.CustomUserDetails;
 import com.example.mfa.security.datas.entities.UserEntity;
-import com.example.mfa.security.exception.OtpNotApproveException;
+import com.example.mfa.security.exception.OtpNotProveException;
 import com.example.mfa.security.util.OTPUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,13 +27,13 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username, String otp) throws UsernameNotFoundException, OtpNotApproveException {
+    public UserDetails loadUserByUsername(String username, String otp) throws UsernameNotFoundException, OtpNotProveException {
         this.otp = otp;
 
         if(otp != null){
             String scretKey = mfaService.getMfa(username).getSecretKey();
             if(!OTPUtil.checkCode(otp, scretKey)){
-                throw new OtpNotApproveException("OTP number didn't approve. Please check again.");
+                throw new OtpNotProveException("OTP number didn't prove. Please check again.");
             }
         }
 

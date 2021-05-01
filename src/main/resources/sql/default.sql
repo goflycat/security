@@ -10,7 +10,7 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_bin
 COMMENT = '이용자 정보';
 
-/*admin 의 비밀번호는 security! 입니다.*/
+/*admin 의 비밀번호는 security!#34 입니다.*/
 INSERT INTO `security`.`users` (`username`, `password`, `roles`) VALUES ('admin', '$2a$10$WTQ94BCL4Igr4GmYaPytpOVyo/lbhgFl2RHdyRiRXKusPLEJNbPjO', 'member,admin');
 
 
