@@ -74,8 +74,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().headers()
                 .frameOptions()
                 .sameOrigin()
-//                .frameOptions().sameOrigin()
-                //FIXME(Jaimie): 화면단 개발을 위해 "/api/**" API를 열어두었습니다. 개발환경에서만 사용해주세요.
                 .and().authorizeRequests().antMatchers(permitallUrls.split(",")).permitAll()
                 .and().formLogin().loginPage("/login").successHandler(new SuccessHandler()).failureHandler(new FailureHandler())
                 .and().logout().logoutUrl("/logout").logoutSuccessHandler(new LogoutSucceedHandler()).invalidateHttpSession(false).permitAll()
